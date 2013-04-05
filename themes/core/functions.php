@@ -7,9 +7,8 @@
  * Add static entries in the template file. 
  */
 $ly->data['header'] = '<h1>Header: Lydia</h1>';
-$ly->data['main']   = '<h2>The Index Controller</h2>';
 $ly->data['footer'] = <<<EOD
-<p>Footer: &copy; Lydia by Henrik Rödén</p>
+<p>Footer: &copy; Lydia by Henrik RÃ¶dÃ©n</p>
 
 <p>Tools: 
 <a href="http://validator.w3.org/check/referer">html5</a>
