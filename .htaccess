@@ -2,6 +2,7 @@
   RewriteEngine on
   # Must use RewriteBase on www.student.bth.se, Rewritebase for url /~mos/test is 
   # /~mos/test/
+  # Dirigerar alla förfrågningar till index.php
   RewriteBase /~hero10/lydia/
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

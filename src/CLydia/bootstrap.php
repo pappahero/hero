@@ -7,7 +7,8 @@
 
 /**
 * Enable auto-load of class declarations.
-När jag gör new på en klass anropas denna funktion för att ladda in klassfilen*/
+Laddar in en fil/class när man skapar ett objekt med new, så slipper man göra require*/
+// Den letar först src och sedan i site/src
 function autoload($aClassName) {
   $classFile = "/src/{$aClassName}/{$aClassName}.php";
    $file1 = LYDIA_INSTALL_PATH . $classFile;

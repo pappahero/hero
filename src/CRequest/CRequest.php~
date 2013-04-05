@@ -53,9 +53,7 @@ class CRequest {
    */
   public function Init($baseUrl = null) {
     $requestUri = $_SERVER['REQUEST_URI'];
-    // URL som skrivs i webbläsaren
-    $scriptName = $_SERVER['SCRIPT_NAME'];
-    // Nuvarande scripts sökväg    
+    $scriptName = $_SERVER['SCRIPT_NAME'];    
     
     // Compare REQUEST_URI and SCRIPT_NAME as long they match, leave the rest as current request.
     $i=0;
