@@ -14,17 +14,6 @@ class CCIndex implements IController {
     $ly->data['title'] = "The Index Controller";
     $ly->data['main'] = "<h1>The Index Controller</h1>";
   }
-  
-  
-         /*private function Menu() {   
-          $ly = CLydia::Instance();
 
-          // ... some code removed
-            $html .= "<li><a href='" . $ly->request->CreateUrl($val) . "'>$val</a>"; 
-
-          // ... some code removed
-          $ly->data['title'] = "The Index Controller";
-
-  */
-}
+}  
 ?>

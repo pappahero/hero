@@ -10,6 +10,26 @@
 error_reporting(-1);
 ini_set('display_errors', 1);
 
+/**
+* Set what to show as debug or developer information in the get_debug() theme helper.
+*/
+//$ly->config['debug']['display-lydia'] = true;
+
+/**
+* What type of urls should be used?
+* 
+* default      = 0      => index.php/controller/method/arg1/arg2/arg3
+* clean        = 1      => controller/method/arg1/arg2/arg3
+* querystring  = 2      => index.php?q=controller/method/arg1/arg2/arg3
+*/
+$ly->config['url_type'] = 1;
+
+/**
+* Set a base_url to use another than the default calculated
+*/
+$ly->config['base_url'] = null;
+
+
 /*
 * Define session name
 */
@@ -44,6 +64,7 @@ $ly->config['language'] = 'en';
 $ly->config['controllers'] = array(
   'index'     => array('enabled' => true,'class' => 'CCIndex'),
   'developer'     => array('enabled' => true,'class' => 'CCDeveloper'),
+  'guestbook'     => array('enabled' => true,'class' => 'CCGuestbook'),
 );
 
 /**
@@ -53,19 +74,5 @@ $ly->config['theme'] = array(
   // The name of the theme in the theme directory
   'name'    => 'core', 
 );
-
-/**
-* Set a base_url to use another than the default calculated
-*/
-$ly->config['base_url'] = null;
-
-/**
-* What type of urls should be used?
-* 
-* default      = 0      => index.php/controller/method/arg1/arg2/arg3
-* clean        = 1      => controller/method/arg1/arg2/arg3
-* querystring  = 2      => index.php?q=controller/method/arg1/arg2/arg3
-*/
-$ly->config['url_type'] = 1;
 
 ?>

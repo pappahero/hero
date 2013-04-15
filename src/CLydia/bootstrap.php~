@@ -7,8 +7,8 @@
 
 /**
 * Enable auto-load of class declarations.
-Laddar in en fil/class nï¿½r man skapar ett objekt med new, sï¿½ slipper man gï¿½ra require*/
-// Den letar fï¿½rst src och sedan i site/src
+Laddar in en fil/class när man skapar ett objekt med new, så slipper man göra require*/
+// Den letar först src och sedan i site/src
 function autoload($aClassName) {
   $classFile = "/src/{$aClassName}/{$aClassName}.php";
    $file1 = LYDIA_INSTALL_PATH . $classFile;
@@ -21,12 +21,5 @@ function autoload($aClassName) {
 }
 
 spl_autoload_register('autoload');
-
-/**
-* Helper, wrap html_entites with correct character encoding
-*/
-function htmlent($str, $flags = ENT_COMPAT) {
-  return htmlentities($str, $flags, CLydia::Instance()->config['character_encoding']);
-}
 
 ?>

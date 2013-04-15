@@ -15,6 +15,13 @@ class CLydia implements ISingleton {
     // &this s� at $ly kan skickas som referens och anv�ndas i config.php
     $ly = &$this;
     require(LYDIA_SITE_PATH.'/config.php');
+    
+    // Start a named session
+    session_name($this->config['session_name']);
+    session_start();
+
+    // Set default date/time-zone
+    date_default_timezone_set($this->config['timezone']);
   }
   
   
@@ -37,9 +44,10 @@ class CLydia implements ISingleton {
   public function FrontControllerRoute() {
     // Dela in url i controller, method, argument och lagra i variabler
     $this->request = new CRequest($this->config['url_type']);
-	$this->request->Init($this->config['base_url']);
+    $this->request->Init($this->config['base_url']);
     $controller = $this->request->controller;
     $method     = $this->request->method;
+    // $formattedMethod = str_replace(array('_', '-'), '', $method);
     $arguments  = $this->request->arguments;
     
     // Is the controller enabled in config.php?
@@ -59,11 +67,14 @@ class CLydia implements ISingleton {
       $rc = new ReflectionClass($className);
       if($rc->implementsInterface('IController')) 
       {
-        if($rc->hasMethod($method)) 
+	$formattedMethod = str_replace(array('_', '-'), '', $method);      	      
+        if($rc->hasMethod($formattedMethod)) 
         {
           $controllerObj = $rc->newInstance();
-          $methodObj = $rc->getMethod($method);
+          $methodObj = $rc->getMethod($formattedMethod);
+          if($methodObj->isPublic()) {
           $methodObj->invokeArgs($controllerObj, $arguments);
+          }
         } 
         else 
         {

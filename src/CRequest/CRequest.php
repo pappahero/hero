@@ -54,17 +54,18 @@ class CRequest {
   public function Init($baseUrl = null) {
     $requestUri = $_SERVER['REQUEST_URI'];
     // URL som skrivs i webbläsaren
-    $scriptName = $_SERVER['SCRIPT_NAME'];
+    $scriptName = $_SERVER['SCRIPT_NAME'];  
     // Nuvarande scripts sökväg    
-    
-    // Compare REQUEST_URI and SCRIPT_NAME as long they match, leave the rest as current request.
+  
+    // Compare REQUEST_URI and SCRIPT_NAME as long they match, leave the rest as 
+    // current request.
     $i=0;
     $len = min(strlen($requestUri), strlen($scriptName));
     while($i<$len && $requestUri[$i] == $scriptName[$i]) {
       $i++;
     }
     $request = trim(substr($requestUri, $i), '/');
-  
+
     // Remove the ?-part from the query when analysing controller/metod/arg1/arg2
     $queryPos = strpos($request, '?');
     if($queryPos !== false) {
