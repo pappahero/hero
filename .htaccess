@@ -1,10 +1,8 @@
 <IfModule mod_rewrite.c>
-  RewriteEngine on
-  # Must use RewriteBase on www.student.bth.se, Rewritebase for url /~mos/test is 
-  # /~hero/herolydia/
-  # Dirigerar alla f�rfr�gningar till index.php
-  RewriteBase /localhost/herolydia/
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ index.php/$1 [NC,L]
+RewriteEngine on
+RewriteBase /~hero10/herolydia/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule (.*) index.php/$1 [NC,L]
 </IfModule>
