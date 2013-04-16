@@ -6,7 +6,7 @@
 /**
  * Add static entries in the template file. 
  */
-$ly->data['header'] = '<h1>Header: Lydia</h1>';
+$ly->data['header'] = '<h1>Header: Lydia. Major Change</h1>';
 $ly->data['header'] = '<a href="source.php">Source</a>';
 $ly->data['footer'] = <<<EOD
 <p>Footer: &copy; Lydia by Henrik Rödén</p>
