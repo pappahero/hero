@@ -11,6 +11,23 @@ error_reporting(-1);
 ini_set('display_errors', 1);
 
 /**
+* Set what to show as debug or developer information in the get_debug() theme 
+' helper.
+*/
+$ly->config['debug']['lydia'] = true;
+$ly->config['debug']['session'] = true;
+$ly->config['debug']['timer'] = true;
+$ly->config['debug']['db-num-queries'] = true;
+$ly->config['debug']['db-queries'] = true;
+
+/**
+* Set database(s).
+*/
+$ly->config['database'][0]['dsn'] = 'sqlite:' . LYDIA_SITE_PATH . '/data/.ht.sqlite';
+// databasen som en multi-array i första arrayen [0]
+// jag vill kunna använda flera databaser i en webbapplikation
+
+/**
 * Set what to show as debug or developer information in the get_debug() theme helper.
 */
 //$ly->config['debug']['display-lydia'] = true;
@@ -34,7 +51,8 @@ $ly->config['base_url'] = null;
 * Define session name
 */
 $ly->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_NAME"]);
-// Sessionsnamn = Serverns namn utan /. osv 
+// Sessionsnamn = Serverns namn utan /. osv
+$ly->config['session_key'] = 'lydia';
 
 /*
 * Define server timezone
