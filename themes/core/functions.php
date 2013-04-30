@@ -4,12 +4,13 @@
  */
 
 /**
- * Add static entries in the template file. 
- */
-$ly->data['header'] = '<h1>Header: Lydia. Major Change</h1>';
-$ly->data['header'] = '<a href="source.php">Source</a>';
+* Add static entries for use in the template file.
+*/
+$ly->data['header'] = 'Lydia';
+$ly->data['slogan'] = 'A PHP-based MVC-inspired CMF';
+$ly->data['favicon'] = theme_url('logo_80x80.png');
 $ly->data['footer'] = <<<EOD
-<p>Footer: &copy; Lydia by Henrik Rödén</p>
+<p>Lydia &copy; by Mikael Roos (mos@dbwebb.se)</p>
 
 <p>Tools: 
 <a href="http://validator.w3.org/check/referer">html5</a>
