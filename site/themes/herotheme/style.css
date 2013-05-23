@@ -1,0 +1,14 @@
+/** 
+ * Description: Sample theme for site which extends the Lydia grid-theme.
+ */
+@import url(../../../themes/grid/style.css);
+
+html{background-color:#FFE2B3;}
+body{background-color:#F0FFFF;
+color: #222; 
+font: 100.01%/1.375 "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif}
+#outer-wrap-header{background-color:#E6E6FA;border-bottom:2px solid #120A8F}
+#outer-wrap-footer{background-color:#E6E6FA}
+a{color:#120A8F}
+#navbar ul.menu li a.selected{background-color:#F0FFFF;border-bottom:none;}
+#navbar ul.menu li a:hover {background: #FFFFF0; border: 2px solid #999;}
