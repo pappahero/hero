@@ -5,64 +5,44 @@
     *
     * @package LydiaCore
     */
-    class CCGuestbook extends CObject implements IController {
+    class CCGuestbook extends CObject implements IController{
 
-      private $pageTitle = 'Lydia Guestbook Example';
-      private $pageHeader = '<h1>Guestbook Example</h1><p>Showing off how to 
-      implement a guestbook in Lydia.</p>';
-      private $pageMessages = '<h2>Current messages</h2>';
-     
-
-      /**
+       private $guestbookModel;
+  
+       /**
        * Constructor
        */
-      public function __construct() {
-        parent::__construct();
-      }
-     
+       public function __construct() {
+       	       parent::__construct();
+       	       $this->guestbookModel = new CMGuestbook();
+       }
 
-  /**
-   * Implementing interface IController. All controllers must have an index action.
-   */
-  public function Index() {   
-    $formAction = $this->request->CreateUrl('guestbook/add');
-    $this->pageForm = "	
-      <form action='{$formAction}' method='post'>
-        <p>
-          <label>Message: <br/>
-          <textarea name='newEntry'></textarea></label>
-        </p>
-        <p>
-          <input type='submit' name='doAdd' value='Add message' />
-          <input type='submit' name='doClear' value='Clear all messages' />
-        </p>
-      </form>
-    ";
-    $this->data['title'] = $this->pageTitle;
-    $this->data['main']  = $this->pageHeader . $this->pageForm . $this->pageMessages;
-   
-    if(isset($_SESSION['guestbook'])) {
-      foreach($_SESSION['guestbook'] as $val) {
-        $this->data['main'] .= "<div style='background-color:#f6f6f6;border:1px 
-        solid #ccc;margin-bottom:1em;padding:1em;'><p>At: {$val['time']}</p>
-        <p>{$val['entry']}</p></div>\n";
-      }
-    }
-  }
-      
-            /**
-       * Add a entry to the guestbook.
+       /**
+       * Implementing interface IController. All controllers must have an index action.
+       * Show a standard frontpage for the guestbook.
        */
-      public function Add() {
-        if(isset($_POST['doAdd'])) {
-          $entry = strip_tags($_POST['newEntry']);
-          $time = date('r');
-          $_SESSION['guestbook'][] = array('time'=>$time, 'entry'=>$entry);
-        }
-        elseif(isset($_POST['doClear'])) {
-          unset($_SESSION['guestbook']);
-        }           
-        header('Location: ' . $this->request->CreateUrl('guestbook'));
-      }
+       public function Index() {
+       	       $this->views->SetTitle('Lydia Guestbook Example');
+       	       $this->views->AddInclude(__DIR__ . '/index.tpl.php', array(
+    	    'entries'=>$this->guestbookModel->ReadAll(),
+    	    'form_action'=>$this->request->CreateUrl('', 'handler')
+    	    ));
+       }
+      
+       /**
+       * Handle posts from the form and take appropriate action.
+       */
+       public function Handler() {
+       	       if(isset($_POST['doAdd'])) {
+       	       	       $this->guestbookModel->Add(strip_tags($_POST['name'], $_POST['telNr'], $_POST['mail']));
+       	       }
+       	       elseif(isset($_POST['doClear'])) {
+       	       	       $this->guestbookModel->DeleteAll();
+       	       }
+       	       elseif(isset($_POST['doCreate'])) {
+       	       	       $this->guestbookModel->Manage('install');
+       	       }
+       	       $this->RedirectTo($this->request->CreateUrl($this->request->controller));
+       }
      
-    } 
+    } // end of class

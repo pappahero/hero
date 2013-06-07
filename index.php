@@ -1,25 +1,21 @@
 <?PHP
 //
 // PHASE: BOOTSTRAP
-// Grunderna för varje förfrågan definieras
-define('LYDIA_INSTALL_PATH', dirname(__FILE__));
-// = http://www.student.bth.se/~hero10/herolydia dirname ger parentdir of index.php
-define('LYDIA_SITE_PATH', LYDIA_INSTALL_PATH . '/site');
-// = http://www.student.bth.se/~hero10/herolydia/site
+define('HERO_INSTALL_PATH', dirname(__FILE__));
+define('HERO_SITE_PATH', HERO_INSTALL_PATH . '/site');
 
-require(LYDIA_INSTALL_PATH.'/src/CLydia/bootstrap.php');
+require(HERO_INSTALL_PATH.'/src/CHero/bootstrap.php');
 
-$ly = CLydia::Instance();
-// Globalt objekt som är kärnan i ramverket
+$he = CHero::Instance();
 
 //
 // PHASE: FRONTCONTROLLER ROUTE
 // Tolkar ut kontroller- och metodanrop
-$ly->FrontControllerRoute();
+$he->FrontControllerRoute();
 
 //
 // PHASE: THEME ENGINE RENDER
 // Skapar webbsidan via templatefiler
-$ly->ThemeEngineRender();
+$he->ThemeEngineRender();
 
 ?>
